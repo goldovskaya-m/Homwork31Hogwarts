@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+
 @Entity
 @Table(name = "student")
+
 public class Student {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id

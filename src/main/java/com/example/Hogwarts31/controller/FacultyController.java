@@ -9,7 +9,6 @@ import java.util.Collection;
 @RequestMapping("/faculty")
 
 public class FacultyController {
-
     private final FacultyService facultyService;
 
     public FacultyController(FacultyService facultyService) {
@@ -38,7 +37,6 @@ public class FacultyController {
     }
 
     @GetMapping("/get/all")
-
     public Collection<Faculty> FindAll() {
         return facultyService.findAll();
     }

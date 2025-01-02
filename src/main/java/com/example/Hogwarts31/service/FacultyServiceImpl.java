@@ -17,21 +17,17 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
 
-
-
     @Override
     public long add(Faculty faculty) {
         return facultyRepository.save(faculty).getId();
 
-
     }
-
     @Override
     public Faculty update(Long id, Faculty faculty) {
         checkFacultyExistExist(id);
         return repository.put(id, faculty);
-    }
 
+    }
     @Override
     public Faculty deleteById(Long id) {
         checkFacultyExistExist(id);
@@ -49,8 +45,6 @@ public class FacultyServiceImpl implements FacultyService {
                 (repository.values());
     }
 
-
-
     @Override
     public  Collection<Faculty> findByColor(String color) {
         return repository.values().stream()
@@ -62,6 +56,5 @@ public class FacultyServiceImpl implements FacultyService {
         if (!repository.containsKey(id)) {
             throw new FacultyNotFoundException(id);
         }
-
     }
 }
