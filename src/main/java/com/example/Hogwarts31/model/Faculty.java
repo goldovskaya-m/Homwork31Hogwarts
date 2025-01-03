@@ -3,6 +3,7 @@ package com.example.Hogwarts31.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name = "faculty")
@@ -10,16 +11,32 @@ import java.util.Objects;
 public class Faculty {
     //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
     private String name;
     private String color;
+    private List<Student> students;
 
-    public Faculty(Long id, String color, String name) {
+    public Faculty(String color, String name) {
+
+        this.color = color;
+        this.name = name;
+
+    }
+
+    public Faculty () {
+
+    }
+    public Faculty(Long id, String color, String name, List<Student> students) {
         this.id = id;
         this.color = color;
         this.name = name;
+        this.students = students;
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 
     public Long getId() {

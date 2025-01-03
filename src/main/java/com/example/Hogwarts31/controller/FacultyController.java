@@ -36,15 +36,25 @@ public class FacultyController {
         return facultyService.findById(id);
     }
 
+    @GetMapping("/{id}/add")
+    public Faculty existById(@PathVariable("id") Long id) {
+        return facultyService.findById(id);
+    }
+
     @GetMapping("/get/all")
     public Collection<Faculty> FindAll() {
         return facultyService.findAll();
+
     }
-
-
     @GetMapping("/get/by-color")
     public Collection<Faculty> findByColor(@RequestParam("color") String color) {
         return facultyService.findByColor(color);
-    }
 
+    }
+    @GetMapping("/get/by-color-or-name")
+    public Collection<Faculty> findByColorOrName(@RequestParam("color") String color,
+                                            @RequestParam("name") String name) {
+        return facultyService.findByColorOrName(color, name);
+
+    }
 }

@@ -1,13 +1,11 @@
-package com.example.Hogwarts31.service;
+package com.example.Hogwarts31.service.impl;
 
 import com.example.Hogwarts31.model.Student;
 import com.example.Hogwarts31.model.exception.StudentNotFoundException;
+import com.example.Hogwarts31.service.StudentService;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -46,12 +44,18 @@ public class StudentServiceImpl implements StudentService {
     public Collection<Student> FindAll() {
         return Collections.unmodifiableCollection
                 (repository.values());
+
     }
 
+
     @Override
-    public  Collection<Student> FindByAge(int age) {
-        return repository.values().stream().filter(st -> st.getAge() == age).toList();
+    public Collection<Student> FindByAge(int age) {
+        return repository.values().stream()
+                .filter(st -> st.getAge() == age)
+                .toList();
     }
+
+
 
     private void checkStudentExist(Long id) {
         if (!repository.containsKey(id)) {

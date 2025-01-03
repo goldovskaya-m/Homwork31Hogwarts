@@ -1,7 +1,7 @@
 package com.example.Hogwarts31;
 
 import com.example.Hogwarts31.model.Faculty;
-import com.example.Hogwarts31.service.FacultyServiceImpl;
+import com.example.Hogwarts31.service.impl.FacultyServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;

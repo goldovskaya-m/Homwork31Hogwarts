@@ -3,24 +3,35 @@ package com.example.Hogwarts31.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "student")
 
 public class Student {
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    // @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //или  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int age;
 
-    public Student(Long id, String name, int age) {
-        this.id = id;
+
+    @ManyToOne
+    private  Faculty faculty;
+   // private  List<Faculty> faculties;
+
+    public Student(String name, int age, Faculty faculty) {
+
         this.name = name;
         this.age = age;
+        this.faculty =  faculty;
+    }
+
+    public Student() {
+
     }
 
     public Long getId() {
@@ -47,10 +58,18 @@ public class Student {
         this.age = age;
     }
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Student student) )return false;
+        if (!(o instanceof Student student)) return false;
         return age == student.age && Objects.equals(id, student.id) && Objects.equals(name, student.name);
     }
 
