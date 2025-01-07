@@ -18,7 +18,6 @@ public class Student {
     private String name;
     private int age;
 
-
     @ManyToOne
     private  Faculty faculty;
    // private  List<Faculty> faculties;

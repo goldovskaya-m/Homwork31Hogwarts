@@ -2,10 +2,7 @@ package com.example.Hogwarts31.service;
 
 import com.example.Hogwarts31.model.Student;
 
-import org.springframework.stereotype.Service;
-
 import java.util.Collection;
-import java.util.List;
 
 public interface StudentService {
 
@@ -21,6 +18,6 @@ public interface StudentService {
 
     Collection<Student> FindByAge(int age);
 
-    //List<Student> findByAgeBetween(int min, int max);
+    public Collection<Student> findByAgeBetween(int min, int max);
 
 }

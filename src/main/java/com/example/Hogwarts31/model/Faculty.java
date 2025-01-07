@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Objects;
+
 @Entity
 @Table(name = "faculty")
 
@@ -12,31 +13,30 @@ public class Faculty {
     //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String name;
     private String color;
-    private List<Student> students;
+
+    @OneToMany
+    private Student student;
+    //private List<Student> students;
 
     public Faculty(String color, String name) {
 
         this.color = color;
         this.name = name;
-
     }
 
-    public Faculty () {
-
-    }
-    public Faculty(Long id, String color, String name, List<Student> students) {
+    public Faculty(Long id, String color, String name, Student student) {
         this.id = id;
         this.color = color;
         this.name = name;
-        this.students = students;
+        this.student = student;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    //public List<Student> getStudents() {
+       // return students;
+    public Faculty() {
     }
 
     public Long getId() {

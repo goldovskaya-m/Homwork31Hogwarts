@@ -45,10 +45,10 @@ public class FacultyServiceImplTest {
         facultyService.add(TEST_FACULTY);
 
         //test
-        Faculty deletedFaculty = facultyService.deleteById(targetId);
+         facultyService.deleteById(targetId);
 
         //check
-        assertThat(deletedFaculty).isEqualTo(TEST_FACULTY);
+        //assertThat(deletedFaculty).isEqualTo(TEST_FACULTY);
         Faculty actual = facultyService.findById(targetId);
         assertThat(actual).isNull();
     }

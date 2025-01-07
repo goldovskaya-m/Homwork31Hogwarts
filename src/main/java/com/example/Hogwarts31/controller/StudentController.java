@@ -9,8 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/student")
-public class StudentController {
 
+public class StudentController {
     private final StudentService studentService;
 
     public StudentController(StudentService studentService) {
@@ -48,9 +48,10 @@ public class StudentController {
         return studentService.FindByAge(age);
     }
 
-    // @GetMapping("/get/by-age-between")
-    // public List<Student> findByAgeBetween(@RequestParam("min") int min,
-    //                                      @RequestParam("max") int max) {
-    //   return studentService.findByAgeBetween(min, max);
-    //}
+     @GetMapping("/get/by-age-between")
+     public Collection<Student> findByAgeBetween(@RequestParam("min") int min,
+                                          @RequestParam("max") int max) {
+       return studentService.findByAgeBetween(min, max);
+
+    }
 }

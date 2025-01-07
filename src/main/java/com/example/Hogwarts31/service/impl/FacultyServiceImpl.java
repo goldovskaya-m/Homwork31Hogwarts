@@ -10,59 +10,63 @@ import java.util.*;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
-   //  private final Map<Long, Faculty> repository = new HashMap<>();
-    // private long counter = 0;
     private final FacultyRepository facultyRepository;
 
     public FacultyServiceImpl(FacultyRepository facultyRepository) {
-
         this.facultyRepository = facultyRepository;
     }
 
     @Override
     public long add(Faculty faculty) {
+        if (facultyRepository.existsById(faculty.getId()))
+            throw new RuntimeException("Студент уже существует");
         return facultyRepository.save(faculty).getId();
 
     }
 
     @Override
     public Faculty update(Long id, Faculty faculty) {
-        checkFacultyExistExist(id);
-        return repository.put(id, faculty);
-
+        checkFacultyExist(id);
+        faculty.setId(id);
+        return facultyRepository.save(faculty);
     }
 
+
     @Override
-    public Faculty deleteById(Long id) {
-        checkFacultyExistExist(id);
-        return repository.remove(id);
+    public void deleteById(Long id) {
+        checkFacultyExist(id);
+         facultyRepository.deleteById(id);
     }
 
     @Override
     public Faculty findById(Long id) {
-        return repository.get(id);
+        return facultyRepository.findById(id)
+                .orElseThrow(() -> new FacultyNotFoundException(id));
     }
 
     @Override
     public Collection<Faculty> findAll() {
-        return Collections.unmodifiableCollection
-                (repository.values());
+               return  (facultyRepository.findAll());
     }
 
     @Override
     public Collection<Faculty> findByColor(String color) {
-        return repository.values().stream()
-                .filter(st -> Objects.equals(st.getColor(), color))
-                .toList();
+        return facultyRepository.findByColor(color);
     }
+
+   // @Override
+   // public Collection<Faculty> findByName(String name) {
+    //    return facultyRepository.findByName(name);
+    //}
+
 
     @Override
     public List<Faculty> findByColorOrName(String color, String name) {
         return List.of();
     }
 
-    private void checkFacultyExistExist(Long id) {
-        if (!repository.containsKey(id)) {
+    private void checkFacultyExist(Long id) {
+        if (!facultyRepository.existsById(id)) {
             throw new FacultyNotFoundException(id);
         }
     }
