@@ -1,6 +1,7 @@
 package com.example.Hogwarts31;
 
 import com.example.Hogwarts31.model.Faculty;
+import com.example.Hogwarts31.model.Student;
 import com.example.Hogwarts31.service.impl.FacultyServiceImpl;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FacultyServiceImplTest {
 
-    private final FacultyServiceImpl facultyService = new FacultyServiceImpl(null);
+    private final FacultyServiceImpl facultyService = new FacultyServiceImpl(null) {
+        @Override
+        public Collection<Student> findByAgeBetween(Long id) {
+            return List.of();
+        }
+    };
 
     @Test
     void add() {

@@ -1,8 +1,7 @@
 package com.example.Hogwarts31.model;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -10,17 +9,18 @@ import java.util.Objects;
 @Table(name = "student")
 
 public class Student {
-    // @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //или  @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
     private int age;
 
     @ManyToOne
+    @JsonIgnore
     private  Faculty faculty;
-   // private  List<Faculty> faculties;
+
 
     public Student(String name, int age, Faculty faculty) {
 
@@ -70,6 +70,7 @@ public class Student {
         if (this == o) return true;
         if (!(o instanceof Student student)) return false;
         return age == student.age && Objects.equals(id, student.id) && Objects.equals(name, student.name);
+
     }
 
     @Override

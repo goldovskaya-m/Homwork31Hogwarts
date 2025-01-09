@@ -15,7 +15,7 @@ import java.io.IOException;
 @Service
 public class AvatarServiceImpl implements AvatarService {
     @Value("${image.path}")
-    private  String pathDir;  //  или без аннотации private final String pathDir= "images";
+    private  String pathDir;
 
     private final AvatarRepository avatarRepository;
 

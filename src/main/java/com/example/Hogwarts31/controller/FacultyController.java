@@ -1,6 +1,7 @@
 package com.example.Hogwarts31.controller;
 
 import com.example.Hogwarts31.model.Faculty;
+import com.example.Hogwarts31.model.Student;
 import com.example.Hogwarts31.service.FacultyService;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,7 +9,6 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/faculty")
-
 public class FacultyController {
     private final FacultyService facultyService;
 
@@ -56,7 +56,7 @@ public class FacultyController {
 
     @GetMapping("/get/by-color-or-name")
     public Collection<Faculty> findByColorOrNameIgnoreCase(@RequestParam(value = "color",
-                                                                   required = false) String color,
+            required = false) String color,
                                                            @RequestParam(value = "name",
                                                                    required = false) String name) {
         return facultyService.findByColorOrName(color, name);

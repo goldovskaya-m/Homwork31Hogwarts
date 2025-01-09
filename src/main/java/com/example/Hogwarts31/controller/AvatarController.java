@@ -1,16 +1,9 @@
 package com.example.Hogwarts31.controller;
-
 import com.example.Hogwarts31.service.AvatarService;
-
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.print.attribute.standard.Media;
-
 import java.io.IOException;
-
-
 
 @RequestMapping("/avatar")
 @RestController

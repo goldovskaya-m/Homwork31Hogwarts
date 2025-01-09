@@ -1,9 +1,7 @@
 package com.example.Hogwarts31.controller;
-
 import com.example.Hogwarts31.model.Student;
 import com.example.Hogwarts31.service.StudentService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collection;
 import java.util.List;
 

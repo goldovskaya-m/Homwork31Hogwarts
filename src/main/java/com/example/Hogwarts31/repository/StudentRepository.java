@@ -11,8 +11,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     Collection<Student> findByAgeBetween(int min, int max);
 
-    //идентичны
-    //@Query(value = "SELECT * FROM STUDENT WHERE AGE BETWEEN :min and:max",
-      //    nativeQuery = true)
-     //List<Student> findByAgeBetween(int min, int max);
+
 }

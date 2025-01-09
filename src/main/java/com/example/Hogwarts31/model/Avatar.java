@@ -1,7 +1,5 @@
 package com.example.Hogwarts31.model;
-
 import jakarta.persistence.*;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -14,16 +12,16 @@ public class Avatar {
     private long fileSize;
     private String mediaType;
     @Lob
-    private byte[] data;   //bytea в хибернейте
+    private byte[] data;
     @OneToOne
     private Student student;
 
     public Avatar(String filePath, long fileSize, String mediaType, byte[] data, Student student) {
-        this.filePath = filePath;   //путь к файлу
-        this.fileSize = fileSize;   //формат
-        this.mediaType = mediaType; //расширение файла
-        this.data = data;           //массив байт
-        this.student = student;     //студент
+        this.filePath = filePath;
+        this.fileSize = fileSize;
+        this.mediaType = mediaType;
+        this.data = data;
+        this.student = student;
     }
 
     public Avatar() {
@@ -82,7 +80,9 @@ public class Avatar {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Avatar avatar = (Avatar) o;
-        return id == avatar.id && fileSize == avatar.fileSize && Objects.equals(filePath, avatar.filePath) && Objects.equals(mediaType, avatar.mediaType) && Objects.deepEquals(data, avatar.data) && Objects.equals(student, avatar.student);
+        return id == avatar.id && fileSize == avatar.fileSize &&
+                Objects.equals(filePath, avatar.filePath) && Objects.equals(mediaType, avatar.mediaType) &&
+                Objects.deepEquals(data, avatar.data) && Objects.equals(student, avatar.student);
     }
 
     @Override

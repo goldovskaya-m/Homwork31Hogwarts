@@ -1,8 +1,6 @@
 package com.example.Hogwarts31.model;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -10,16 +8,16 @@ import java.util.Objects;
 @Table(name = "faculty")
 
 public class Faculty {
-    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String color;
 
-    @OneToMany
+    @OneToMany(mappedBy = "faculty")
     private Student student;
-    //private List<Student> students;
+
 
     public Faculty(String color, String name) {
 
@@ -67,7 +65,8 @@ public class Faculty {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Faculty faculty) )return false;
-        return Objects.equals(id, faculty.id) && Objects.equals(name, faculty.name) && Objects.equals(color, faculty.color);
+        return Objects.equals(id, faculty.id) && Objects.equals(name, faculty.name) &&
+                Objects.equals(color, faculty.color);
     }
 
 
