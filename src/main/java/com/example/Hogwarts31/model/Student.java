@@ -18,7 +18,7 @@ public class Student {
     private int age;
 
     @ManyToOne
-    @JsonIgnore
+
     private  Faculty faculty;
 
 

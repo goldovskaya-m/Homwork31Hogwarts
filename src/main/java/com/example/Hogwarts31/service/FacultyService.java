@@ -20,7 +20,7 @@ public interface FacultyService {
 
     Collection<Faculty> findByColor(String color);
 
-    List<Faculty> findByColorOrName(String color, String name);
+    Collection<Faculty> findByColorOrName(String color, String name);
 
     Collection<Student> findByAgeBetween(Long id);
 

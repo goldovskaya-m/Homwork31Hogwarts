@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public abstract class FacultyServiceImpl implements FacultyService {
+public  class FacultyServiceImpl implements FacultyService {
     private final FacultyRepository facultyRepository;
 
     public FacultyServiceImpl(FacultyRepository facultyRepository) {
@@ -21,7 +21,7 @@ public abstract class FacultyServiceImpl implements FacultyService {
     @Override
     public long add(Faculty faculty) {
         if (facultyRepository.existsById(faculty.getId()))
-            throw new RuntimeException("Студент уже существует");
+            throw new RuntimeException("Факультет уже существует");
         return facultyRepository.save(faculty).getId();
 
     }
@@ -57,7 +57,13 @@ public abstract class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public List<Faculty> findByColorOrName(String color, String name) {
+    public Collection<Faculty> findByColorOrName(String color, String name) {
+        return facultyRepository.findByColorIgnoreCaseOrNameIgnoreCase(color, name);
+
+    }
+
+    @Override
+    public Collection<Student> findByAgeBetween(Long id) {
         return List.of();
     }
 

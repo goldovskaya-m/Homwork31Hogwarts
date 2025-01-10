@@ -1,4 +1,5 @@
 package com.example.Hogwarts31.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.util.List;
@@ -15,8 +16,9 @@ public class Faculty {
     private String name;
     private String color;
 
-    @OneToMany(mappedBy = "faculty")
-    private Student student;
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private  List<Student> students;
 
 
     public Faculty(String color, String name) {
@@ -25,16 +27,19 @@ public class Faculty {
         this.name = name;
     }
 
-    public Faculty(Long id, String color, String name, Student student) {
+    public Faculty(Long id, String color, String name, List<Student> student) {
         this.id = id;
         this.color = color;
         this.name = name;
-        this.student = student;
+        this.students = student;
     }
 
-    //public List<Student> getStudents() {
-       // return students;
+
     public Faculty() {
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 
     public Long getId() {
